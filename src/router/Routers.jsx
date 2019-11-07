@@ -1,35 +1,27 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
+// import { checkLogin } from '@src/utils/hook';
+import { Icon } from 'antd';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+// const Logins = lazy(() => import('./Login/index.js'));
+// const Layout = lazy(() => import('./components/layout/Layout'));
 
-import Home from '../components/pages/home/Home';
-import Page1 from '../components/pages/Page1';
-// import Bundle from './Bundle';
-const Loading = function () {
-    return <div>Loading...</div>
-};
+const Home = lazy(() => import('../components/pages/home/Home'));
+const Page1 = lazy(() => import('../components/pages/Page1'));
 
-// const createComponent = (component) => (props) => (
-//     <Bundle load={component}>
-//         {
-//             (Component) => Component ? <Component {...props} /> : <Loading/>
-//         }
-//     </Bundle>
-// );
+function Routers() {
+    return (
+        <Router>
+            <div className="App">
+                <Suspense fallback={<div><Icon type="sync" spin />请稍等...</div>}>
+                    {/* <Route exact path="/" component={Logins} /> */}
+                    {/* <Route path="/equipmentCctv" render={props => checkLogin(EquipmentCctv, props, 120002)} /> */}
+                    <Route exact path="/" render={ () => <Home />} />
+                    <Route path="/page1" render={ () => <Page1 />} />
+                </Suspense>
+            </div>
+        </Router>
+    );
+}
 
-const getRouter = () => (
-    <Router>
-       <div>
-            <ul>
-                <li><Link to="/">首页</Link></li>
-                <li><Link to="/page1">Page1</Link></li>
-            </ul>
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/page1" component={Page1}/>
-            </Switch>
-        </div>
-    </Router>
-);
-
-export default getRouter;
+export default Routers;

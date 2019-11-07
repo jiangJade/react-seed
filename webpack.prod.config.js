@@ -1,3 +1,4 @@
+// 生产环境
 const glob = require('glob');
 const path = require('path');
 const webpack = require('webpack');
@@ -8,6 +9,7 @@ const webpackCommonConfig = require('./webpack.common.config');
 
 const webpackConfig = {
     devtool: 'source-map',
+    mode: 'development',
     module: {
         rules: [
             {
@@ -46,4 +48,4 @@ const webpackConfig = {
         // }),
     ]
 };
-module.exports = merge(webpackConfig, webpackCommonConfig); merge
+module.exports = merge(webpackConfig, webpackCommonConfig);

@@ -11,6 +11,8 @@ const STATIC_PATH = 'static';
 const extractVendor = new ExtractTextPlugin(`${STATIC_PATH}/css/[hash].vendor.css`);
 const extractStyle = new ExtractTextPlugin(`${STATIC_PATH}/css/[hash].style.css`);
 
+const devMode = process.env.NODE_ENV === 'production';
+
 const webpackCommonConfig = {
     entry: {
         main: path.join(__dirname, 'src/index.jsx'),
@@ -40,84 +42,18 @@ const webpackCommonConfig = {
              * 第三方组件的css, scss抽离为独立文件vendor.css
              */
         }, {
-            // test: /\.(css|scss)$/,
-            // include: path.join(__dirname, 'node_modules'),
-                /**
-                 * 主项目的css合并到style.css
-                 */
-            // use: [
-            //     MiniCssExtractPlugin.loader,
-            //     'style-loader',
-            //     'css-loader',
-            //     'postcss-loader',
-            //     'sass-loader'
-            /**
-            * 主项目的css合并到style.css
-            */
-            
-        }, {
-            // test: /\.css$/,
-            // include: path.join(__dirname, 'node_modules'),
-            // use: [ MiniCssExtractPlugin.loader,
-                // {
-                //     loader: 'css-loader',
-                //     options: {
-                //         importLoaders: 1,
-                //         minimize: {
-                //             autoprefixer: {
-                //                 add: true,
-                //                 remove: true,
-                //                 browsers: ['last 2 versions'],
-                //             },
-                //             discardComments : {
-                //                 removeAll: true,
-                //             },
-                //             discardUnused: false,
-                //             mergeIdents: false,
-                //             reduceIdents: false,
-                //             safe: true
-                //         }
-                //     }
-                // }
-            // ]
-        }, {
-            test: /\.less$/,
-            use: ExtractTextPlugin.extract([
+            test: /\.(sa|sc|c)ss$/,
+            use: [
+                devMode ? MiniCssExtractPlugin.loader
+                : 'style-loader',
                 'css-loader',
                 'postcss-loader',
-                'less-loader'
-            ]),
-            include: path.join(__dirname, './src'),
-            exclude: /node_modules/
+                'sass-loader'
+            ]
         }, {
-            test: /\.(css|less)$/,
-            include: path.join(__dirname, 'src'),
-            loader: extractStyle.extract([
-                'css-loader?modules&importLoaders=1&localIdentName=[path]_[name]_[local]_[hash:base64:5]',
-                'postcss-loader',
-                'less-loader'
-            ])
-            /**
+             /**
              * 字体加载器
              */
-        }, {
-            // test: /\.css$/,
-            // include: path.join(__dirname, 'src'),
-            // loader: [
-            //     'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
-            //     'postcss-loader'
-            // ]
-            // use: [
-            //     // 'style-loader', 'css-loader', 'sass-loader',
-            // 'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
-            // 'sass-loader',
-            //     {loader: 'postcss-loader', options: {plugins: [require('autoprefixer')('last 100 versions')]}},
-            // ],
-            // exclude:path.resolve(__dirname,'/node_modules')
-            /**
-             * 字体加载器
-             */
-        }, {
             test: /\.(woff|eot|ttf|js|svg)$/,
             include: path.join(__dirname, 'src/fonts'),
             use: [
@@ -193,9 +129,9 @@ const webpackCommonConfig = {
         extractStyle,
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 指定moment加载中文
         new CleanWebpackPlugin(['dist']), // 清除编译目录
-        // new MiniCssExtractPlugin({
-        //     filename: `${STATIC_PATH}/css/[chunkhash].css` //放到dist/css/下
-        // }),
+        new MiniCssExtractPlugin({
+            filename: `${STATIC_PATH}/css/[chunkhash].css` //放到dist/css/下
+        }),
         // 主页面入口index.html
         new HtmlWebpackPlugin({
             filename: 'index.html',

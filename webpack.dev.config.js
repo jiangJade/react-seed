@@ -7,8 +7,8 @@ const LOCAL_HOST = env.npm_package_server_local_host;
 const LOCAL_PORT = env.npm_package_server_local_port;
 const MOCK_HOST = env.npm_package_server_mock_host;
 const MOCK_PORT = env.npm_package_server_mock_port;
-const API_HOST = env.npm_package_server_api_host;
-const API_PORT = env.npm_package_server_api_port;
+
+const urlAll = require('./src/global/url.js');
 
 const webpackDev = {
     devtool: 'cheap-module-eval-source-map',
@@ -47,10 +47,10 @@ const webpackDev = {
                 target: `http://${MOCK_HOST}:${MOCK_PORT}`,
                 pathRewrite: { '^/mock': '' }
             },
-            '/proxy': {
+            '/api': {
                 // matches paths starting with '/api'
-                target: `http://${API_HOST}:${API_PORT}`,
-                pathRewrite: { '^/proxy': '' }
+                target: `http://${urlAll.url}`,
+                pathRewrite: { '^/api': '' }
             }
         }
     }
