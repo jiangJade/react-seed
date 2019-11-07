@@ -1,0 +1,1 @@
+npm run release:dev & pause
