@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const STATIC_PATH = 'static';
 const extractVendor = new ExtractTextPlugin(`${STATIC_PATH}/css/[hash].vendor.css`);
@@ -29,11 +29,11 @@ const webpackCommonConfig = {
             components: path.join(__dirname, 'src/components'),
             router: path.join(__dirname, 'src/router')
         },
-        extensions: ['.js', '.jsx', '.css', '.scss', '.less']
+        extensions: ['.js', '.jsx', '.ts', '.css', '.scss', '.less']
     },
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|ts)$/,
             include: path.join(__dirname, 'src'),
             // exclude: path.join(__dirname, 'src/fonts'),
             exclude: /(node_modules|bower_components)/,
@@ -45,13 +45,13 @@ const webpackCommonConfig = {
             test: /\.(sa|sc|c)ss$/,
             use: [
                 devMode ? MiniCssExtractPlugin.loader
-                : 'style-loader',
+                    : 'style-loader',
                 'css-loader',
                 'postcss-loader',
                 'sass-loader'
             ]
         }, {
-             /**
+            /**
              * 字体加载器
              */
             test: /\.(woff|eot|ttf|js|svg)$/,
@@ -110,7 +110,7 @@ const webpackCommonConfig = {
                     priority: 10,
                     minChunks: 2, // 表示被引用次数，默认为1；
                     enforce: true
-                },
+                }
                 // css: {
                 //     name: `${STATIC_PATH}/common/css`,
                 //     test: /\.css$/,
@@ -130,7 +130,7 @@ const webpackCommonConfig = {
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 指定moment加载中文
         new CleanWebpackPlugin(['dist']), // 清除编译目录
         new MiniCssExtractPlugin({
-            filename: `${STATIC_PATH}/css/[chunkhash].css` //放到dist/css/下
+            filename: `${STATIC_PATH}/css/[chunkhash].css` // 放到dist/css/下
         }),
         // 主页面入口index.html
         new HtmlWebpackPlugin({

@@ -12,6 +12,6 @@ export default class Home extends Component {
                 </div>
                 <div>33333333333333</div>
             </div>
-        )
+        );
     }
 }

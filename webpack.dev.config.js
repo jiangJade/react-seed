@@ -12,24 +12,24 @@ const urlAll = require('./src/global/url.js');
 
 const webpackDev = {
     devtool: 'cheap-module-eval-source-map',
-    mode: "development",
+    mode: 'development',
     module: {
         rules: [
             {
                 /**
                  * eslint代码规范校验
                  */
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|ts)$/,
                 enforce: 'pre',
-                include: path.join(__dirname, 'src')
-                // use: [
-                //     {
-                //         loader: 'eslint-loader',
-                //         options: {
-                //             configFile: '.eslintrc.json'
-                //         }
-                //     }
-                // ]
+                include: path.join(__dirname, 'src'),
+                use: [
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            configFile: '.eslintrc.json'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -56,4 +56,4 @@ const webpackDev = {
     }
 };
 
-module.exports = merge(webpackDev, webpackCommonConfig)
+module.exports = merge(webpackDev, webpackCommonConfig);
