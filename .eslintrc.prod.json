@@ -1,5 +1,5 @@
 {
-    "extends": [".eslintrc.json"],
+    "extends": ["tslint.json"],
     "rules": {
         "no-multiple-empty-lines": ["error", {"max": 1}],
         "indent": ["error", 4, {"SwitchCase": 1}],
