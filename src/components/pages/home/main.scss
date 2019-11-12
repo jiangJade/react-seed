@@ -7,3 +7,12 @@
     background-color: red;
     @include ll;
 }
+
+.about {
+    height: 100px;
+    width: 800px;
+    color: blue;
+    .title {
+        font-size: 18px;
+    }
+}

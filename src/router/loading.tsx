@@ -1,7 +1,7 @@
 
 // export default Loading
-import { Spin } from 'antd';
 import * as React from 'react';
+import { Spin } from 'antd';
 
 const Loading = () => (
     <div className="spin">

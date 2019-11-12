@@ -1,0 +1,10 @@
+.base-pagination {
+    position: relative;
+    margin-bottom: 30px;
+    .ant-pagination {
+        float: right;
+        display: block;
+        font-size: 14px;
+    }
+}
+

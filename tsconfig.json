@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "build/dist",
+    "outDir": "./dist/static",
     "module": "esnext",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -10,8 +10,10 @@
     "jsx": "react",
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": "./src",
     "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
@@ -19,7 +21,18 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
+  "include": [
+    "src"
+  ],
+  "lib": [
+    "dom",
+    "dom.iterable",
+    "esnext"
+  ],
   "exclude": [
-    "node_modules"
+    "build",
+    "node_modules",
+    "scripts",
+    "webpack"
   ]
 }
