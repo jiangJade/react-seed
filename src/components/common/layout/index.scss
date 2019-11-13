@@ -1,0 +1,15 @@
+.layout {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .bgColor {
+        background-color: #00346E;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        background-color: #F6F6F6;
+        padding: 0.16rem 0.28rem;
+    }
+}
