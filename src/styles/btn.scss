@@ -1,0 +1,76 @@
+/* 按钮颜色 */
+
+@mixin btn($bgc, $c: white, $bdc: transparent) {
+    background-color: $bgc;
+    border: 1px solid $bdc;
+    color: $c;
+}
+
+:global {
+    .btn {
+        display: inline-block;
+        padding: 0 15px;
+        min-width: 100px;
+        height: 36px;
+        line-height: 36px;
+        border: 1px solid #e7ebee;
+        border-radius: 4px;
+        font-size: 14px;
+        text-align: center;
+        background-color: white;
+        color: #8999ab;
+        outline: 0;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        &:hover {
+            @include btn(#fff, #2faff7, #2faff7);
+        }
+        &[disabled] {
+            background-color: #8CA0AE !important;
+            border: 1px solid #8CA0AE !important;
+            cursor: not-allowed;
+        }
+    }
+
+    .btn-large {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .btn-blue {
+        @include btn(#2365C4);
+        &:hover {
+            @include btn(#2365C4);
+        }
+    }
+    .btn-red {
+        @include btn(#ff6b61);
+        &:hover {
+            @include btn(#ff7a71);
+        }
+    }
+    .btn-orange {
+        @include btn(#F99248);
+        &:hover {
+            @include btn(#F99248);
+        }
+    }
+    .btn-green {
+        @include btn(#29d2b8);
+        &:hover {
+            @include btn(#3fd7bf);
+        }
+    }
+    .btn-gray {
+        @include btn(#8CA0AE);
+        &:hover {
+            @include btn(#8CA0AE);
+        }
+    }
+    .btn-primary {
+        @include btn(#3370c8);
+        &:hover {
+            @include btn(#3370c8);
+        }
+    }
+}

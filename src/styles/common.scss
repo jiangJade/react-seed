@@ -1,0 +1,102 @@
+/* 公用样式 */
+
+:global {
+    table {
+        table-layout: fixed;
+    }
+
+    .fl {
+        float: left;
+    }
+    .fr {
+        float: right;
+    }
+    .alignL {
+        text-align: left;
+    }
+
+    .alignC {
+        text-align: center;
+    }
+
+    .alignR {
+        text-align: right;
+    }
+
+    .base-panel {
+        padding: 0 20px;
+        background: #fff;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(144, 172, 224, 0.12);
+        margin-bottom: 20px;
+    }
+    // 登录页和忘记密码页公共样式
+    .not-login-bg {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        .form-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: auto;
+            margin: -37px 0 0 -200px;
+
+            .ant-form-item {
+                margin-bottom: 20px;
+            }
+
+            input {
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .anticon {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .company-name-with-button {
+        text-align: center;
+        .ant-select-auto-complete {
+            margin-right: 0 !important;
+            vertical-align: top;
+            .ant-input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+        button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    // 按钮组
+    .btn-group {
+        .btn {
+            margin-right: 20px;
+        }
+    }
+
+    // 操作组
+    .operation {
+        a:not(:last-child) {
+            margin-right: 15px;
+        }
+    }
+
+    // 常用颜色类
+    .red-font {
+        color: #D73128;
+    }
+}

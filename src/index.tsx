@@ -1,3 +1,7 @@
+import './styles/main.scss';
+import './styles/common.scss';
+import './styles/btn.scss';
+import './styles/reset.scss';
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { ConfigProvider } from 'antd';

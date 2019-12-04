@@ -1,0 +1,79 @@
+/**
+ * 项目公共样式, 根据实际项目调整
+ */
+@import "color";
+
+html{
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+
+    body {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        position: relative;
+        font-size: 14px;
+        font-family: "SourceHanSansCN-Regular","Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif !important;
+        font-weight: 400;
+        // color: #333;
+        color: $font;
+    }
+
+    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{
+        margin: 0;
+        padding: 0;
+    }
+    img {
+        border-style: none;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+    :global(.clearfix:after){
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    .hide {
+        display: none !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    :global(.ant-form-explain) {
+        position: absolute;
+    }
+}
+
+// 登录和密码忘记页公共样式
+:global(span.ant-input-group-addon) {
+    height: 40px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #3370c8;
+}
+
+:global(.has-error) {
+    $errorRed: #F7524A;
+    :global(span.ant-input-group-addon) {
+        color: #fff;
+        background-color: $errorRed;
+        border-color: $errorRed;
+    }
+
+    :global(input.ant-input) {
+        border-color: $errorRed;
+    }
+    :global(input.ant-input:not([disabled]):hover) {
+        border-color: $errorRed;
+    }
+}
