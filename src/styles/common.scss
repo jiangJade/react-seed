@@ -1,6 +1,10 @@
 /* 公用样式 */
 
 :global {
+    #app {
+        height: 100%;
+        width: 100%;
+    }
     table {
         table-layout: fixed;
     }

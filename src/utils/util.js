@@ -267,12 +267,12 @@ export function eventWringText() {
     let obj = {}, eventTypeData = getLocal('eventTypeData');
     eventTypeData && eventTypeData.forEach(item => {
         obj[item.id] = item.typeName;
-    })
+    });
     return obj;
 }
 
 // 返回事件格式为时分秒的数据
-export function hourAndSecond(data = "") {
+export function hourAndSecond(data = '') {
     let time = moment(data).format('HH:mm:ss');
     return time;
 }
@@ -283,7 +283,7 @@ export function equipmentLineData(data) {
     data.forEach(item => {
         lineData.push(item.avgValue);
         category.push(hourAndSecond(item.recordTime));
-    })
+    });
     return {lineData, category};
 }
 
@@ -294,7 +294,7 @@ export function eventRusultState(data, code = 'code') {
 
     data && data.forEach(item => {
         obj[item[code]] = item.name;
-    })
+    });
     return obj;
 }
 

@@ -1,0 +1,121 @@
+.Login_div {
+    width: 100%;
+    height: 100%;
+    background: url('../../images/logins.jpg') no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.login_imgs {
+    width: 50px;
+    height: 50px;
+}
+
+.the_log_div {
+    background: rgba(255, 255, 255, 0.5);
+    width: 300px;
+    height: 500px;
+    padding: 60px 25px 10px 25px;
+    border-radius: 10px;
+    position: absolute;
+    top: 12%;
+    right: 10%;
+
+    p:nth-child(1) {
+        color: #ffffff;
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    p:nth-child(2) {
+        color: #ffffcc;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    p:nth-child(3) {
+        color: #ccffff;
+        font-size: 23px;
+        font-weight: bold;
+        margin-bottom: 60px;
+    }
+    .failureIncon {
+        height: 21px;
+        width: 21px;
+        margin-left: 10px;
+        display: inline-block;
+        .textSpan {
+            margin-left: 10px;
+        }
+    }
+}
+
+.inp_user {
+    overflow: hidden;
+    margin-bottom: 25px;
+
+    input {
+        width: 85%;
+        font-size: 16px !important;
+        background-color: rgba(255, 255, 255, 0) !important;
+        color: #333333 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid #333333 !important;
+    }
+
+    .anticon {
+        position: relative;
+        top: 2px;
+    }
+}
+
+.inp_pawd {
+    overflow: hidden;
+    margin-bottom: 40px;
+
+    input {
+        width: 100%;
+        font-size: 16px !important;
+        background-color: rgba(255, 255, 255, 0) !important;
+        color: #333333 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid #333333 !important;
+        border-radius: 0;
+    }
+
+    .anticon {
+        position: relative;
+        top: 2px;
+    }
+
+    .ant-input-suffix {
+        display: none;
+    }
+
+    .ant-input-password {
+        width: 85%;
+    }
+}
+
+.the_log_btn {
+    text-align: center;
+
+    button {
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid #333333 !important;
+        width: 55%;
+        margin-left: 5%;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0);
+        color: #333333;
+        font-weight: bold;
+        width: 85%;
+        border: 2px solid #333333 !important;
+    }
+}

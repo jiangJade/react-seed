@@ -48,5 +48,5 @@ export default function HooksTable({api, getColumns, searchParams}) {
             bordered
             footer={() => <Pagination total={total} current={current} size={size} onChange={pageChange}/>}
         />
-    )
+    );
 }
