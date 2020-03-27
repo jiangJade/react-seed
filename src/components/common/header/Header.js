@@ -86,7 +86,7 @@ export default class Header extends React.Component {
                 </div>
                 {/* 中间 */}
                 <div className={styles.head_cont}>
-                    <p>全息智慧隧道</p>
+                    <p></p>
                 </div>
                 {/* 右侧 */}
                 <div className={styles.head_right}>

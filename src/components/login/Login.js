@@ -1,120 +1,86 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './login.scss';
-import {  Form, Button, Input, Icon  } from 'antd';
+import { Form, Button, Input, Checkbox } from 'antd';
 // import { setLocal, setSession } from '../utils/storage';
 // import { CURRENT_USER_INFO, CURRENT_USER_ROULS } from '@src/constants/common';
 // import { eventTypeWring, getDictionary } from '@src/service/common';
 import errorPng from '../../images/error.png';
-import { isEmpty } from '../../utils/util';
+// import { isEmpty } from '../../utils/util';
 // import { isEmpty, isNotEmpty } from '../utils/util';
 // import { getLogin } from '@src/service/common';
 
-const FormItem = Form.Item;
-
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            passwordType: 'text',
-            username: '',
-            password: '',
-            data: '',
-            msg: ''
-        };
-    }
-
-    // 登录事件
-    handleSubmit = async (e) => {
-        e && e.preventDefault();
+export default function Login() {
+    // 登录
+    const onFinish = values => {
         window.location.replace('#/page');
-        // this.props.form.validateFields((err, values) => {
-        //     if (!err) {
-        //         getLogin(values).then(res => {
-        //             res = res.data || {};
-        //             if(isNotEmpty(res)) {
-        //                 setSession(CURRENT_USER_INFO, res);
-        //                 this.props.history.push('#/page');
-        //                 // this.props.history.push(CURRENT_USER_ROULS[res.roleType]);
-        //             }
-        //         }).catch(e => {
-        //             this.setState({
-        //                 data: e.code,
-        //                 msg: e.resultMsg
-        //             });
-        //         });
-        //     }
-        // });
+    };
+
+    const onFinishFailed = errorInfo => {
+        // console.log('Failed:', errorInfo);
     };
 
     // 回车键登录
-    keyDown = (e) => {
+    const keyDown = (e) => {
         if (e.keyCode === 13) {
-            this.handleSubmit();
+            onFinish();
         }
     };
 
-    // 处理事件状态数据的格式
-    formatEventState = (data) => {
-        if(isEmpty(data)) {
-            return [];
-        }
-        let arr = [];
-        data.forEach(item => {
-            arr.push({id: item.typeCode, typeName: item.name});
-        });
-        return arr;
+    const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 }
     };
 
-    render() {
-        const { passwordType, data, msg } = this.state;
-        const { getFieldDecorator } = this.props.form;
-        return (
-            <div className={styles.Login_div}>
-                <div className={styles.the_log_div}>
-                    <p>欢迎登录</p>
-                    <p>全息智慧隧道</p>
-                    <p>展示平台</p>
-                    { data === 10003 && <div>
-                        <img src={errorPng} alt="" className={styles.failureIncon} />
-                        <span className={styles.textSpan}>{msg}</span>
-                    </div>
-                    }
-                    <Form>
-                        <FormItem>
-                            {getFieldDecorator('username', {
-                                rules: [{ required: true, message: '请输入用户名！' }]
-                            })(
-                                <Input
-                                    addonBefore={<Icon type="user" />}
-                                    placeholder="请输入用户名"
-                                    size="large"
-                                    autoComplete="off"
-                                />
-                            )}
-                        </FormItem>
-                        <FormItem>
-                            {getFieldDecorator('password', {
-                                rules: [{ required: true, message: '请输入密码！', whitespace: true }]
-                            })(
-                                <Input.Password
-                                    addonBefore={<Icon type="lock" />}
-                                    type={passwordType}
-                                    placeholder="请输入密码"
-                                    size="large"
-                                    autoComplete="new-password"
-                                    onKeyDown={this.keyDown}
-                                />
-                            )}
-                        </FormItem>
-                        <FormItem className={styles.the_log_btn}>
-                            <Button onClick={(e) => this.handleSubmit(e)}>登录</Button>
-                        </FormItem>
-                    </Form>
+    const tailLayout = {
+        wrapperCol: { offset: 8, span: 16 }
+    };
+
+    const data = '', msg = '';
+    return (
+        <div className={styles.Login_div}>
+            <div className={styles.the_log_div}>
+                <p></p>
+                { data === 10003 && <div>
+                    <img src={errorPng} alt="" className={styles.failureIncon} />
+                    <span className={styles.textSpan}>{msg}</span>
                 </div>
-            </div>
-        );
-    }
-}
+                }
+                <Form
+                    {...layout}
+                    name="basic"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                >
+                    <Form.Item
+                        label="用户名"
+                        name="username"
+                        rules={[{ required: false, message: '请输入用户名' }]}
+                    >
+                        <Input />
+                    </Form.Item>
 
-export default Form.create()(Login);
+                    <Form.Item
+                        label="密码"
+                        name="password"
+                        rules={[{ required: false, message: '请输入密码' }]}
+
+                    >
+                        <Input.Password onKeyDown={keyDown} />
+                    </Form.Item>
+
+                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item className={styles.the_log_btn}>
+                        <Button type="primary" htmlType="submit">
+                            登录
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
+        </div>
+    );
+}

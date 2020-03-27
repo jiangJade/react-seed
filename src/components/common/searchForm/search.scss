@@ -1,0 +1,17 @@
+.searchBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .formBox {
+        display: flex;
+        margin: 20px 0;
+    }
+    .formAdd {
+        display: flex;
+        margin-left: auto;
+    }
+    .ant-calendar-footer .ant-calendar-footer-show-ok {
+        display: none;
+    }
+}

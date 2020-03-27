@@ -5,73 +5,17 @@ export const OPEN_NEW_PAGE_PARAMS = 'OPEN_NEW_PAGE_PARAMS';
 
 export const PERMISSION = 'PERMISSION';
 
-export const MENU_REFRESH_EVENT = {
-    MENU_REFRESH: 'MENU_REFRESH'
-};
-
-export const TRAFFICGRADE = {
-    1: '一级',
-    2: '二级',
-    3: '三级',
-    4: '四级'
-};
-
-// 用户登录后根据权限查看界面
-export const CURRENT_USER_ROULS = {
-    120001: '超级管理员',
-    120002: '/equipmentCctv',
-    120003: '/trafficCctv',
-    120004: '/curingCalendar',
-    120005: '养护班组',
-    120006: '系统管理员'
-};
-
 // 公共的api前缀
 export const PROXY_API = '/api';
 
-// 返回当前菜单页
-export const CURRENT_MENU_RETURN = 'CURRENT_MENU_RETURN';
-
 // 返回编辑页
 export const CURRENT_MENU_EDITE = 'CURRENT_MENU_EDITE';
-
-// 区段开始桩号
-export const EARE_START_NUMBER = [
-    {name: 'DK01', value: 1},
-    {name: 'DK02', value: 2},
-    {name: 'DK03', value: 3},
-    {name: 'DK04', value: 4},
-    {name: 'DK05', value: 5}
-];
-
-// 区段结束桩号
-export const EARE_END_NUMBER = [
-    {name: 'DK05', value: 1},
-    {name: 'DK04', value: 2},
-    {name: 'DK03', value: 3},
-    {name: 'DK02', value: 4},
-    {name: 'DK01', value: 5}
-];
-
-export const HANDLE_TYPE = {
-    115001: '忽略',
-    115002: '纳入养护',
-    115003: '立即处理'
-};
 
 // 分页条数组
 export const PAGE_SIZE_OPTIONS = ['10', '20', '30'];
 
 // 默认分页条数
 export const PAGE_SIZE = parseInt(PAGE_SIZE_OPTIONS[0], 10);
-
-// 时间格式
-
-// 时间格式
-export const YEAR_MONTH = 'YYYY-MM';
-
-// 日期格式
-export const DATE_FORMAT = 'YYYY-MM-DD';
 
 export const formatTimeReg = new RegExp('/', 'g');
 
@@ -137,27 +81,6 @@ export const TIME_NODE = [
     {name: '季度', value: 4},
     {name: '半年', value: 5},
     {name: '年', value: 6}
-];
-
-export const SOURCE_EVENTS = [
-    {name: '设备监控', value: 1},
-    {name: '交通监控', value: 2},
-    {name: '其他', value: 3}
-];
-
-export const REPORT_STATUS = {
-    '118001': '已生成',
-    '118002': '未生成'
-};
-
-// 事件类型
-export const EVENT_TYPES = [
-    {name: '全部', value: 1},
-    {name: '交通事故', value: 2},
-    {name: '设备故障', value: 3},
-    {name: '通信故障', value: 4},
-    {name: '违法停车', value: 5},
-    {name: '异物占道', value: 6}
 ];
 
 // 新增处置事件类型
@@ -240,11 +163,4 @@ export const accidentGrade = [
     {name: '一般事故', value: '2'},
     {name: '重大事故', value: '3'},
     {name: '特大事故', value: '4'}
-];
-
-// 车道类型
-export const laneType = [
-    { label: '左车道', value: '1' },
-    { label: '中车道', value: '2' },
-    { label: '右车道', value: '3', disabled: false }
 ];

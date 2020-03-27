@@ -1,3 +1,4 @@
+$colorF1: #F1F1F1;
 .layout {
     height: 100%;
     width: 100%;
@@ -41,11 +42,11 @@
     
         .sys_navigatRight::-webkit-scrollbar {/*滚动条整体样式*/
             width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
-            background: #F1F1F1;
-            color: #C1C1C1;
+            background-color: $colorF1;
+            color: $colorF1;
         }
         .sys_navigatRight::-webkit-scrollbar-track {  /*背景的颜色*/
-            background: #F1F1F1;
+            background-color: $colorF1;
             border-radius:5px;
         }
         .sys_navigatRight::-webkit-scrollbar-thumb {   /*滚动部分的颜色*/
@@ -55,11 +56,11 @@
     }
     .OC-Breadcrumb{
         font-size: 14px;
-        color: #888888;
+        color: #888;
         margin-bottom: 5px;
     }
     .Leveltwo{
-        color: #000000;
+        color: #000;
     }
     .bgColor {
         background-color: #00346E;
