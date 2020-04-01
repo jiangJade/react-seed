@@ -7,7 +7,7 @@
 /coverage
 /jsonfig.json
 # production
-/build
+build
 
 # misc
 
