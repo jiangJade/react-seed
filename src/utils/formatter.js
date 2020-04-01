@@ -2,7 +2,7 @@
  * @desc 用于格式化各种数据, 如从后台拿到timestamp, 需要转换成年月日等...
  */
 import moment from 'moment';
-import { DATE_FORMAT, DATE_TIME_FORMAT, PROVINCES } from '../constants/common';
+import { DATE_TIME_FORMAT, PROVINCES } from '../constants/common';
 import { isBlank, isEmpty } from './util';
 
 /*
@@ -17,7 +17,7 @@ export function startEndDateFormat(time, type = 'start') {
 
 // 日期
 export function dateFormat(time) {
-    return time ? moment(time).format(DATE_FORMAT) : '--';
+    return time ? moment(time).format(DATE_TIME_FORMAT) : '--';
 }
 
 // 日期+时间
@@ -117,56 +117,44 @@ export function wordLinefeed(str, max, symbol = '\n') {
     return ('' + str).replace(replaceReg, '').replace(reg, `$1${symbol}`);
 }
 
-// 格式化列表数据
-export function formatListData(data) {
-    if(isEmpty(data)) {
-      return [];
-    }
-    let menuData = [];
-    data.forEach(item => {
-      menuData.push({value: item.systemId, name: item.systemName});
-    });
-    return menuData;
-};
-
 // 判断两个对象是否相等
-export function isObjectEqual( x, y ) { 
-    if ( x === y ) { 
-        return true; 
-    } 
-    
-    if ( ! ( x instanceof Object ) || ! ( y instanceof Object ) ) { 
-        return false; 
-    } 
-    
-    if ( x.constructor !== y.constructor ) { 
-        return false; 
-    } 
-    
-    for ( var p in x ) { 
-        if ( x.hasOwnProperty( p ) ) { 
-            if ( ! y.hasOwnProperty( p ) ) { 
-                return false; 
-            } 
-    
-            if ( x[ p ] === y[ p ] ) { 
-                continue; 
-            } 
-    
-            if ( typeof( x[ p ] ) !== "object" ) { 
-                return false; 
-            } 
-        
-            if ( ! Object.equals( x[ p ], y[ p ] ) ) { 
-                return false; 
-            } 
-        } 
-    } 
-    
-    for ( p in y ) { 
-        if ( y.hasOwnProperty( p ) && ! x.hasOwnProperty( p ) ) { 
-            return false; 
-        } 
-    } 
-    return true; 
-};
+export function isObjectEqual( x, y ) {
+    if ( x === y ) {
+        return true;
+    }
+
+    if ( ! ( x instanceof Object ) || ! ( y instanceof Object ) ) {
+        return false;
+    }
+
+    if ( x.constructor !== y.constructor ) {
+        return false;
+    }
+
+    for ( var p in x ) {
+        if ( x.hasOwnProperty( p ) ) {
+            if ( ! y.hasOwnProperty( p ) ) {
+                return false;
+            }
+
+            if ( x[ p ] === y[ p ] ) {
+                continue;
+            }
+
+            if ( typeof( x[ p ] ) !== 'object' ) {
+                return false;
+            }
+
+            if ( ! Object.equals( x[ p ], y[ p ] ) ) {
+                return false;
+            }
+        }
+    }
+
+    for ( p in y ) {
+        if ( y.hasOwnProperty( p ) && ! x.hasOwnProperty( p ) ) {
+            return false;
+        }
+    }
+    return true;
+}

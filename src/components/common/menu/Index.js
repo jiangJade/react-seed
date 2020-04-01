@@ -2,12 +2,13 @@
 import React from 'react';
 import styles from './index.scss';
 import { Link } from 'react-router-dom';
-import {  Icon, Menu  } from 'antd';
+import { Menu } from 'antd';
+import { CopyTwoTone } from '@ant-design/icons';
 
 const SubMenu = Menu.SubMenu;
 
 export default class Index extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,11 +29,11 @@ export default class Index extends React.Component {
         // commons.setNversHeight(document.getElementById('Glob_Leftnav'));
         // commons.setNversHeight(document.getElementById('Glob_Rightnav'));
     }
-    
+
     // 导航点击
     checNative = (index) => {
         let opkeys = [index.key];
-        
+
         this.setState({
             openKeys01s: opkeys
         });
@@ -67,15 +68,15 @@ export default class Index extends React.Component {
     render() {
         const menuData = [
             {data: [
-                {key: '1', to: '/page', title: '事件处置管理'}, 
-                {key: '5', to: '/home/eventTypes', title: '事件源管理'}, 
+                {key: '1', to: '/page', title: '事件处置管理'},
+                {key: '5', to: '/home/eventTypes', title: '事件源管理'},
                 {key: '6', to: '/home/eventPlane', title: '处置方案管理'}
-            ], subMenuKey: 'sub1', title: '交通监控', icon: <Icon type="cluster" />},
+            ], subMenuKey: 'sub1', title: '交通监控', icon: <CopyTwoTone />},
             {data: [
-                {key: '7', to: '/home/curingCalendar', title: '养护日历'}, 
-                {key: '8', to: '/home/curingReportForm', title: '养护报表'}, 
+                {key: '7', to: '/home/curingCalendar', title: '养护日历'},
+                {key: '8', to: '/home/curingReportForm', title: '养护报表'},
                 {key: '10', to: '/home/diseaseCollect', title: '病害汇总'}
-            ], subMenuKey: 'sub2', title: '养护管理', icon: <Icon type="alert" />}
+            ], subMenuKey: 'sub2', title: '养护管理', icon: <CopyTwoTone />}
         ];
         return (
             <div className={styles.layoutMenu}>

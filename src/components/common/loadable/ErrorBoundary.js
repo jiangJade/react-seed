@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
 import styles from './styles.scss';
 
 class ErrorBoundary extends React.Component {
@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component {
         return errorInfo ? (
             <section className={styles.container}>
                 <h2 className={styles.title}>
-                    <Icon type="exception" />
+                    <ExclamationCircleFilled />
                     <span className={styles.error}>页面加载失败</span>
                 </h2>
                 <details>

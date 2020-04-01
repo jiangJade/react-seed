@@ -1,9 +1,10 @@
 // 首页header
 import React from 'react';
-import {  Menu, Icon  } from 'antd';
+import { Menu } from 'antd';
+import { EditFilled, InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons';
 import styles from './header.scss';
 import moment from 'moment';
-import { getSession, remove } from 'utils/storage';
+import { getSession, remove } from '@/utils/storage';
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -17,17 +18,17 @@ export default class Header extends React.Component {
                     </Menu.Item> */}
                     <Menu.Item >
                         <span target="_blank" rel="noopener noreferrer">
-                            <Icon type="edit" />&nbsp;&nbsp;&nbsp;密码修改
+                            <EditFilled />&nbsp;&nbsp;&nbsp;密码修改
                         </span>
                     </Menu.Item>
                     <Menu.Item >
                         <span target="_blank" rel="noopener noreferrer">
-                            <Icon type="info-circle" />&nbsp;&nbsp;&nbsp;关于系统
+                            <InfoCircleOutlined />&nbsp;&nbsp;&nbsp;关于系统
                         </span>
                     </Menu.Item>
                     <Menu.Item >
                         <span target="_blank" rel="noopener noreferrer" onClick={()=> this.Exit() }>
-                            <Icon type="logout" />&nbsp;&nbsp;&nbsp;退出登录
+                            <LogoutOutlined />&nbsp;&nbsp;&nbsp;退出登录
                         </span>
                     </Menu.Item>
                 </Menu>
@@ -98,9 +99,9 @@ export default class Header extends React.Component {
                         <span className={styles.hour}>{hour}</span>&nbsp;&nbsp;&nbsp;
                     </p>
                     <p>
-                        <img className={styles.head_right_imgs} src={require('images/head.png')} alt="" />&nbsp;
+                        <img className={styles.head_right_imgs} src={require('@/images/head.png')} alt="" />&nbsp;
                         <span>{username}</span>&nbsp;&nbsp;&nbsp;
-                        <img className={styles.head_right_imgs1} src={require('images/logout.png')} alt="退出登录" onClick={this.exit}/>&nbsp;&nbsp;&nbsp;
+                        <img className={styles.head_right_imgs1} src={require('@/images/logout.png')} alt="退出登录" onClick={this.exit}/>&nbsp;&nbsp;&nbsp;
                     </p>
                 </div>
             </div>
