@@ -7,7 +7,7 @@ export default function CaptureValue() {
 
     const handleAlertClick = debounce(useCallback(()=> {
 
-        alert('You clicked on: ' + countRef.current);
+        // alert('You clicked on: ' + countRef.current);
     }, [count]), 500);
 
     return (

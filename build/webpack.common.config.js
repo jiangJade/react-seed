@@ -16,9 +16,10 @@ const webpackCommonConfig = {
         vendor: ['react', 'react-router-dom', 'react-dom']
     },
     output: {
+        publicPath: '/',
         path: path.join(__dirname, '../dist'),
         filename: `${STATIC_PATH}/js/[chunkhash].[name].js`,
-        publicPath: '/'
+        chunkFilename: `${STATIC_PATH}/js/[name].[chunkhash:5].chunk.js`
     },
     resolve: {
         alias: {
@@ -26,15 +27,15 @@ const webpackCommonConfig = {
             '@/components': path.join(__dirname, '../src/components'),
             '@/utils': path.resolve(__dirname, './../src/utils')
         },
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.less']
+        extensions: ['.js', '.jsx', '.css', '.scss']
     },
     module: {
         rules: [{
-            test: /\.(js|jsx|ts|tsx)$/,
+            test: /\.(js|jsx)$/,
             include: path.join(__dirname, '../src'),
             exclude: /(node_modules|bower_components)/,
             use: {
-                loader: 'babel-loader',
+                loader: 'babel-loader?cacheDirectory',
                 options: {
                     cacheDirectory: true,
                     plugins: [
@@ -113,6 +114,7 @@ const webpackCommonConfig = {
     },
     optimization: { // 提取主页面和魔盒页面共享的公共模块
         splitChunks: {
+            chunks: 'async',
             // chunks: 'initial', 表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)，默认为all;
             cacheGroups: {
                 // vendor: { // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。
@@ -129,16 +131,16 @@ const webpackCommonConfig = {
                     enforce: true
                 }
                 // css: {
-                //     name: `${STATIC_PATH}/common/css`,
+                //     name: `css`,
                 //     test: /\.css$/,
                 //     chunks: 'all',
                 //     enforce: true
                 // } // 会生成css文件
             }
-        },
-        runtimeChunk: {
-            name: STATIC_PATH
         }
+        // runtimeChunk: {
+        //     name: STATIC_PATH
+        // }
     },
     plugins: [
         // 提取css
