@@ -5,29 +5,18 @@ export default function CaptureValue() {
     const [count, setCount] = useState(0);
     const countRef = useRef(null);
 
-    const handleAlertClick = () => {
+    const handleAlertClick = debounce(useCallback(()=> {
 
-        alert('You clicked on: ', count);
-    };
-
-    const onClickAdd = () => {
-        setCount(count + 1);
-    };
-    // const handleAlertClick = useCallback(()=> {
-
-    //     alert('You clicked on: ', count);
-    // }, [count]);
+        // alert('You clicked on: ' + countRef.current);
+    }, [count]), 500);
 
     return (
         <div>
             <p>You clicked {count} times</p>
-            <button onClick= {() => setCount(count + 1)
-                // countRef.current = count + 1;
-            }>
-            {/* <button onClick={() => {
-                // countRef.current = count + 1;
+            <button onClick={() => {
+                countRef.current = count + 1;
                 setCount(count + 1);
-            }}> */}
+            }}>
                 增加 count
             </button>
             <button onClick={handleAlertClick}>
