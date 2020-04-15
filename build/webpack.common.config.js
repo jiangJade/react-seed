@@ -145,7 +145,7 @@ const webpackCommonConfig = {
     plugins: [
         // 提取css
         new MiniCssExtractPlugin({
-            filename: `${STATIC_PATH}/css/[chunkhash].css` // 放到dist/css/下
+            filename: `${STATIC_PATH}/css/[name].[contenthash:8].css` // 放到dist/css/下
         }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 指定moment加载中文
         new CleanWebpackPlugin(['dist']), // 清除编译目录

@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-
 import Loadable from '../components/common/loadable/Loadable';
 
 import Login from '../components/login/Login';

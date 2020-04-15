@@ -4,7 +4,7 @@ module.exports = {
         '@babel/preset-react'
     ],
     plugins: [
-        ['import', { 
+        ['import', {
             libraryName: 'antd',
             libraryDirectory: 'lib',
             'style': 'css'

@@ -11,7 +11,7 @@ const MOCK_PORT = env.npm_package_server_mock_port;
 const urlAll = require('../src/global/url.js');
 
 const webpackDev = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'inline-source-map',
     mode: 'development',
     module: {
         rules: [
@@ -40,6 +40,7 @@ const webpackDev = {
         compress: true,     // 开起 gzip 压缩
         inline: true,
         historyApiFallback: true,
+        noInfo: true,
         contentBase: path.join(__dirname, '../dist'),
         overlay: {
             errors: true
@@ -57,6 +58,10 @@ const webpackDev = {
             }
         }
     }
+    // plugins: [
+    //     new webpack.NamedModulesPlugin(),
+	// 	new webpack.HotModuleReplacementPlugin()
+    // ]
 };
 
 module.exports = merge(webpackDev, webpackCommonConfig);
