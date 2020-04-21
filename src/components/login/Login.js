@@ -28,8 +28,12 @@ export default function Login() {
     };
 
     const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 }
+        labelCol: {
+            span: 8
+        },
+        wrapperCol: {
+            span: 16
+        }
     };
 
     const tailLayout = {
@@ -65,7 +69,6 @@ export default function Login() {
                         label="密码"
                         name="password"
                         rules={[{ required: false, message: '请输入密码' }]}
-
                     >
                         <Input.Password onKeyDown={keyDown} />
                     </Form.Item>

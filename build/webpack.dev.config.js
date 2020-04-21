@@ -30,6 +30,21 @@ const webpackDev = {
                         }
                     }
                 ]
+            }, {
+                // 在 src 中的 css, scss，开启css-module
+                test: /\.(sa|sc|c)ss$/,
+                include: path.join(__dirname, '../src'),
+                use: ['style-loader',
+                    'css-loader?modules&import=true&importLoaders=true&localIdentName=[path]_[name]_[local]_[hash:base64:5]',
+                    'postcss-loader',
+                    'sass-loader'
+                ]
+            },
+            // 在 node_modules 中的 css，不开启
+            {
+                test: /\.(sa|sc|c)ss$/,
+                include: /node_modules/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
             }
         ]
     },
@@ -58,10 +73,6 @@ const webpackDev = {
             }
         }
     }
-    // plugins: [
-    //     new webpack.NamedModulesPlugin(),
-	// 	new webpack.HotModuleReplacementPlugin()
-    // ]
 };
 
 module.exports = merge(webpackDev, webpackCommonConfig);

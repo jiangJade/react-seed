@@ -4,8 +4,11 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const PurifyCssPlugin = require('purifycss-webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpackCommonConfig = require('./webpack.common.config');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const STATIC_PATH = 'static';
 
 const webpackConfig = {
     devtool: '',
@@ -27,14 +30,23 @@ const webpackConfig = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
             }
         ]
     },
+   
     plugins: [
+        new CleanWebpackPlugin(), // 清除编译目录
         new PurifyCssPlugin({
             paths: glob.sync(path.join(__dirname, '../src/*.html'))
+        }), // 清除未使用的css
+        // 提取css
+        new MiniCssExtractPlugin({
+            filename: `${STATIC_PATH}/css/[name].[contenthash:8].css` // 放到dist/css/下
         }),
-        new UglifyJSPlugin(),
         new webpack.DefinePlugin({
             // 配置全局变量
             'process.env.NODE_ENV': JSON.stringify('production'),
@@ -42,11 +54,6 @@ const webpackConfig = {
             __TEST__: false
         }),
         new webpack.HashedModuleIdsPlugin()
-
-        /* 找到webpack.dll.config生成的`manifest.json`文件配置到`plugins`里面 */
-        // new webpack.DllReferencePlugin({
-        //     manifest: require(path.join(__dirname, '..', 'dist', 'manifest.json')),
-        // }),
     ]
 };
 module.exports = merge(webpackConfig, webpackCommonConfig);

@@ -14,6 +14,9 @@ module.exports = {
         // }],
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }],
+        // ["transform-es2015-modules-commonjs", {
+        //     "allowTopLevelThis": true
+        // }],
         '@babel/plugin-syntax-dynamic-import',
         '@babel/plugin-transform-runtime'
     ]
