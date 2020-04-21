@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const ZipWebpackPlugin = require('zip-webpack-plugin');
 
 const STATIC_PATH = 'static';
 
@@ -112,6 +113,10 @@ const webpackCommonConfig = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, '../src/index.html'),
+        }),
+        new ZipWebpackPlugin ({
+            path: path.join(__dirname, '../dist'),
+            filename: 'reactDist.zip'
         })
     ]
 };
