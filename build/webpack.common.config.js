@@ -54,12 +54,13 @@ const webpackCommonConfig = {
             include: path.join(__dirname, '../src/images'),
             use: [
                 {
-                    loader: 'url-loader',
+                    loader: "file-loader",
                     options: {
-                        limit: 8 * 1024,
+                        limit: 10000,
                         name: `${STATIC_PATH}/images/[hash].[ext]`
                     }
-                }
+                },
+                'image-webpack-loader'
             ]
         }, {
             test: /\.ico$/,
@@ -104,7 +105,7 @@ const webpackCommonConfig = {
         }
     },
     plugins: [
-        
+
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 指定moment加载中文
 
         // 主页面入口index.html
