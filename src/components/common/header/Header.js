@@ -3,7 +3,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { EditFilled, InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons';
 import styles from './header.scss';
-import moment from 'moment';
+import dayJs from 'dayjs';
 import { getSession, remove } from '@/utils/storage';
 
 export default class Header extends React.Component {
@@ -62,9 +62,9 @@ export default class Header extends React.Component {
     };
 
     formatMoment = () => {
-        const currentTime = moment().locale('zh-cn').format('YYYY-MM-DD') || '';
-        const week = this.state.weeks[moment().get('day')] || '';
-        const hour = moment().locale('zh-cn').format('HH:mm:ss') || '';
+        const currentTime = dayJs().locale('zh-cn').format('YYYY-MM-DD') || '';
+        const week = this.state.weeks[dayJs().get('day')] || '';
+        const hour = dayJs().locale('zh-cn').format('HH:mm:ss') || '';
         return {currentTime, week, hour};
     };
 

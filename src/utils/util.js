@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+import dayJs from 'dayjs';
 import { getLocal, setSession } from './storage';
 import { OPEN_NEW_PAGE_PARAMS } from '../constants/common';
 /**
@@ -273,7 +272,7 @@ export function eventWringText() {
 
 // 返回事件格式为时分秒的数据
 export function hourAndSecond(data = '') {
-    let time = moment(data).format('HH:mm:ss');
+    let time = dayJs(data).format('HH:mm:ss');
     return time;
 }
 

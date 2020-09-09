@@ -5,8 +5,7 @@ import './search.scss';
 import React, { Component } from 'react';
 import { DATE_TIME_FORMAT } from '../../../constants/common';
 import { Form, Select, DatePicker, Button } from 'antd';
-import moment from 'moment';
-moment.locale('zh-cn');
+import dayJs from 'dayjs';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const { RangePicker } = DatePicker;
@@ -47,7 +46,7 @@ class SearchForm extends Component {
 
     // 禁止选择今天以后的时间
     disabledDate = (current) => {
-        return current && current > moment().endOf('day');
+        return current && current > dayJs().endOf('day');
     };
 
     render() {
@@ -58,8 +57,8 @@ class SearchForm extends Component {
                 <Form layout="inline" onSubmit={this.onSubmit} className="formBox">
                     <FormItem label="报警时间">
                         {getFieldDecorator('time', {
-                            initialValue: [moment(new Date(dates.setDate(dates.getDate() - 2)), DATE_TIME_FORMAT), 
-                                moment(new Date (), DATE_TIME_FORMAT)]
+                            initialValue: [dayjs().startOf('day').format(DATE_TIME_FORMAT),
+                                dayjs().format(DATE_TIME_FORMAT)]
                         })(
                             <RangePicker />
                         )}

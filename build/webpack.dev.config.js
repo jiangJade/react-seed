@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const webpackCommonConfig = require('./webpack.common.config.js');
 
 const env = process.env;
@@ -40,7 +41,7 @@ const webpackDev = {
                     'sass-loader'
                 ]
             },
-            // 在 node_modules 中的 css，不开启
+            // 在 node_modules 中的 cssModule不开启
             {
                 test: /\.(sa|sc|c)ss$/,
                 include: /node_modules/,
@@ -52,11 +53,13 @@ const webpackDev = {
         host: LOCAL_HOST,
         port: LOCAL_PORT,
         disableHostCheck: true,
-        compress: true,     // 开起 gzip 压缩
+        compress: true,     // 开起服务压缩压缩
+        // open: true,
+        // hot: true, // 热更新
         inline: true,
-        historyApiFallback: true,
+        // historyApiFallback: true,
         noInfo: true,
-        contentBase: path.join(__dirname, '../dist'),
+        contentBase: path.join(__dirname, '../dist'), // 访问启动文件夹
         overlay: {
             errors: true
         },
@@ -66,13 +69,17 @@ const webpackDev = {
                 target: `http://${MOCK_HOST}:${MOCK_PORT}`,
                 pathRewrite: { '^/mock': '' }
             },
-            '/api': {
+            '/lydsjzx': {
                 // matches paths starting with '/api'
                 target: `http://${urlAll.url}`,
-                pathRewrite: { '^/api': '' }
+                pathRewrite: { '^/lydsjzx': '' }
             }
         }
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin({
+        })
+    ]
 };
 
 module.exports = merge(webpackDev, webpackCommonConfig);

@@ -1,34 +1,8 @@
 /**
  * @desc 用于格式化各种数据, 如从后台拿到timestamp, 需要转换成年月日等...
  */
-import moment from 'moment';
-import { DATE_TIME_FORMAT, PROVINCES } from '../constants/common';
+import { PROVINCES } from '../constants/common';
 import { isBlank, isEmpty } from './util';
-
-/*
- *  @desc 格式化开始日期
- *  @param time 需要格式化日期
- *  @param type start OR end
- * */
-export function startEndDateFormat(time, type = 'start') {
-    let suffix = type === 'start' ? ' 00:00:00' : ' 23:59:59';
-    return time ? dateFormat(time) + suffix : '';
-}
-
-// 日期
-export function dateFormat(time) {
-    return time ? moment(time).format(DATE_TIME_FORMAT) : '--';
-}
-
-// 日期+时间
-export function dateTimeFormat(time) {
-    return time && moment(time).format('x') > 1000 ? moment(time).format(DATE_TIME_FORMAT) : '--';
-}
-
-// 时间差 天
-export function dateDiffByDay(beginTime, endTime, type) {
-    return moment(endTime).diff(moment(beginTime), type);
-}
 
 /**
  * 千分位
