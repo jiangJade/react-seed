@@ -147,8 +147,7 @@ const webpackCommonConfig = {
             maxChunks: 5,
             minChunkSize: 100
         }),
-        new webpack.PrefetchPlugin('', request),
-        new webpack.PrefetchPlugin([context], request),
+        
     ]
 };
 
