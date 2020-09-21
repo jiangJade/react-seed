@@ -34,13 +34,7 @@ const webpackConfig = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    // MiniCssExtractPlugin.loader,
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: process.env.NODE_ENV === 'development'
-                        }
-                    },
+                    MiniCssExtractPlugin.loader,
                     'css-loader', 'postcss-loader', 'sass-loader'
                 ]
             }

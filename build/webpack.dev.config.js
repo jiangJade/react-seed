@@ -35,11 +35,18 @@ const webpackDev = {
                 // 在 src 中的 css, scss，开启css-module
                 test: /\.(sa|sc|c)ss$/,
                 include: path.join(__dirname, '../src'),
-                use: ['style-loader',
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            hmr: true
+                        }
+                    },
                     'css-loader?modules&import=true&importLoaders=true&localIdentName=[path]_[name]_[local]_[hash:base64:5]',
                     'postcss-loader',
                     'sass-loader'
                 ]
+                
             },
             // 在 node_modules 中的 cssModule不开启
             {
