@@ -5,9 +5,11 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const PurifyCssPlugin = require('purifycss-webpack');
 const webpackCommonConfig = require('./webpack.common.config');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
+const smp = new SpeedMeasurePlugin();
 const STATIC_PATH = 'static';
 
 const webpackConfig = {
@@ -56,4 +58,5 @@ const webpackConfig = {
         new webpack.HashedModuleIdsPlugin()
     ]
 };
-module.exports = merge(webpackConfig, webpackCommonConfig);
+
+module.exports = smp.wrap(merge(webpackConfig, webpackCommonConfig));
