@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const ZipWebpackPlugin = require('zip-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const STATIC_PATH = 'static';
 
@@ -13,7 +14,6 @@ const webpackCommonConfig = {
         vendor: ['react', 'react-router-dom', 'react-dom']
     },
     output: {
-        // publicPath: '/',
         path: path.join(__dirname, '../dist'),
         filename: `${STATIC_PATH}/js/[hash].[name].js`,
         chunkFilename: `${STATIC_PATH}/js/[name].[hash:5].chunk.js`
@@ -55,13 +55,17 @@ const webpackCommonConfig = {
             include: path.join(__dirname, '../src/images'),
             use: [
                 {
-                    loader: "file-loader",
-                    options: {
-                        limit: 10000,
-                        name: `${STATIC_PATH}/images/[hash].[ext]`
-                    }
-                },
-                'image-webpack-loader'
+                    loader: 'file-loader',
+                }
+                // {
+                //     loader: ImageMinimizerPlugin.loader,
+                //     options: {
+                //         severityError: 'warning', 
+                //         minimizerOptions: {
+                //             plugins: ['gifsicle']
+                //         }
+                //     }
+                // }
             ]
         }, {
             test: /\.ico$/,
@@ -82,7 +86,7 @@ const webpackCommonConfig = {
             new UglifyJSPlugin({
                 sourceMap: true,
                 cache: true,
-                parallel: true,
+                parallel: true
             }),
             new OptimizeCssAssetsWebpackPlugin({})
         ],
@@ -108,15 +112,35 @@ const webpackCommonConfig = {
     plugins: [
 
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/), // 指定moment加载中文
-
         // 主页面入口index.html
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, '../src/index.html'),
+            template: path.resolve(__dirname, '../src/index.html')
         }),
         new ZipWebpackPlugin ({
             path: path.join(__dirname, '../dist'),
             filename: 'reactDist.zip'
+        }),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                // Lossless optimization with custom option
+                // Feel free to experiment with options for better result for you
+                plugins: [
+                    ['gifsicle', { interlaced: true }],
+                    ['jpegtran', { progressive: true }],
+                    ['optipng', { optimizationLevel: 5 }],
+                    [
+                        'svgo',
+                        {
+                            plugins: [
+                                {
+                                    removeViewBox: false
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            }
         })
     ]
 };

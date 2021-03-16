@@ -7,7 +7,7 @@ const PurifyCssPlugin = require('purifycss-webpack');
 const webpackCommonConfig = require('./webpack.common.config');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 const smp = new SpeedMeasurePlugin();
 const STATIC_PATH = 'static';
